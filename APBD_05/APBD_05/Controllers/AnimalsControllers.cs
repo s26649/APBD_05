@@ -2,7 +2,7 @@ using APBD_05;
 using APBD_05.Database;
 using Microsoft.AspNetCore.Mvc;
 
-[Route("api/[controller]")]
+[Route("api/animals")]
 [ApiController]
 public class AnimalsController : ControllerBase
 {
@@ -24,7 +24,7 @@ public class AnimalsController : ControllerBase
 
     // POST: api/animals
     [HttpPost]
-    public ActionResult<Animal> PostAnimal(Animal animal)
+    public ActionResult<Animal> CreateAnimal(Animal animal)
     {
         Db.Animals.Add(animal);
         return CreatedAtAction(nameof(GetAnimal), new { id = animal.Id }, animal);
@@ -33,7 +33,7 @@ public class AnimalsController : ControllerBase
 
     // PUT: api/animals/{id}
     [HttpPut("{id}")]
-    public IActionResult PutAnimal(int id, Animal animal)
+    public IActionResult UpdateAnimal(int id, Animal animal)
     {
         var existingAnimal = Db.Animals.FirstOrDefault(a => a.Id == id);
         if (existingAnimal == null) return NotFound();
